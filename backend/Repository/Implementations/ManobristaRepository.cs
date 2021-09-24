@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace ParkinglotApp.Services.Implementations
 {
-  public class ManobristaService : IManobristaService
+  public class ManobristaRepository : IManobristaRepository
   {
     private MySqlContext _context;
 
-    public ManobristaService(MySqlContext context)
+    public ManobristaRepository(MySqlContext context)
     {
       _context = context;
     }

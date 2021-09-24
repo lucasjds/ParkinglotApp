@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ParkinglotApp.Business;
 using ParkinglotApp.Model;
-using ParkinglotApp.Services;
 
 namespace ParkinglotApp.Controllers
 {
@@ -11,26 +11,26 @@ namespace ParkinglotApp.Controllers
   public class ManobristaController : ControllerBase
   {
     private readonly ILogger<ManobristaController> _logger;
-    private IManobristaService _manobristaService;
+    private IManobristaBusiness _manobristaBusiness;
 
-    public ManobristaController(ILogger<ManobristaController> logger, 
-                                IManobristaService manobristaService)
+    public ManobristaController(ILogger<ManobristaController> logger,
+                                IManobristaBusiness manobristaBusiness)
     {
       _logger = logger;
-      _manobristaService = manobristaService;
+      _manobristaBusiness = manobristaBusiness;
     }
 
     [HttpGet]
     public IActionResult Get()
     {
 
-      return Ok(_manobristaService.Listar());
+      return Ok(_manobristaBusiness.Listar());
     }
 
     [HttpGet("{id}")]
     public IActionResult Get(long id)
     {
-      var person = _manobristaService.BuscarPorId(id);
+      var person = _manobristaBusiness.BuscarPorId(id);
       if (person == null)
         return NotFound();
       return Ok(person);
@@ -41,7 +41,7 @@ namespace ParkinglotApp.Controllers
     {
       if (manobrista == null)
         return BadRequest();
-      return Ok(_manobristaService.Criar(manobrista));
+      return Ok(_manobristaBusiness.Criar(manobrista));
     }
 
     [HttpPut]
@@ -49,13 +49,13 @@ namespace ParkinglotApp.Controllers
     {
       if (manobrista == null)
         return BadRequest();
-      return Ok(_manobristaService.Atualizar(manobrista));
+      return Ok(_manobristaBusiness.Atualizar(manobrista));
     }
 
     [HttpDelete("{id}")]
     public IActionResult Delete(long id)
     {
-      _manobristaService.Deletar(id);
+      _manobristaBusiness.Deletar(id);
       return NoContent();
     }
   }

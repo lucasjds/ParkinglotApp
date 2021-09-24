@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ParkinglotApp.Business;
+using ParkinglotApp.Business.Implementations;
 using ParkinglotApp.Model.Context;
 using ParkinglotApp.Services;
 using ParkinglotApp.Services.Implementations;
@@ -27,7 +29,8 @@ namespace ParkinglotApp
       var connection = Configuration["MySqlConnection:MySqlConnectionString"];
       services.AddDbContext<MySqlContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
       services.AddApiVersioning();
-      services.AddScoped<IManobristaService, ManobristaService>();
+      services.AddScoped<IManobristaBusiness, ManobristaBusiness>();
+      services.AddScoped<IManobristaRepository, ManobristaRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

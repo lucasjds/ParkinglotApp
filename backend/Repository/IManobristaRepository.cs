@@ -1,12 +1,9 @@
 ﻿using ParkinglotApp.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ParkinglotApp.Services
 {
-  public interface IManobristaService
+  public interface IManobristaRepository
   {
     Manobrista Criar(Manobrista manobrista);
     Manobrista BuscarPorId(long id);
