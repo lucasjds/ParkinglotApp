@@ -5,8 +5,9 @@ using ParkinglotApp.Services;
 
 namespace ParkinglotApp.Controllers
 {
+  [ApiVersion("1")]
   [ApiController]
-  [Route("api/[controller]")]
+  [Route("api/[controller]/v{version:apiVersion}")]
   public class ManobristaController : ControllerBase
   {
     private readonly ILogger<ManobristaController> _logger;

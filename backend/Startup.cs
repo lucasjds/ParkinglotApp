@@ -26,6 +26,7 @@ namespace ParkinglotApp
       services.AddControllers();
       var connection = Configuration["MySqlConnection:MySqlConnectionString"];
       services.AddDbContext<MySqlContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+      services.AddApiVersioning();
       services.AddScoped<IManobristaService, ManobristaService>();
     }
 
