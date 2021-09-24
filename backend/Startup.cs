@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ParkinglotApp.Model.Context;
+using ParkinglotApp.Services;
+using ParkinglotApp.Services.Implementations;
 
 namespace ParkinglotApp
 {
@@ -20,6 +24,9 @@ namespace ParkinglotApp
     {
 
       services.AddControllers();
+      var connection = Configuration["MySqlConnection:MySqlConnectionString"];
+      services.AddDbContext<MySqlContext>(options => options.UseMySql(connection, ServerVersion.AutoDetect(connection)));
+      services.AddScoped<IManobristaService, ManobristaService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

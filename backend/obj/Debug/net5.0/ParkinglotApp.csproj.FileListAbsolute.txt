@@ -20,3 +20,12 @@ C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\obj\Debug\net5.0\Parki
 C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\obj\Debug\net5.0\ref\ParkinglotApp.dll
 C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\obj\Debug\net5.0\ParkinglotApp.pdb
 C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\obj\Debug\net5.0\ParkinglotApp.genruntimeconfig.cache
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\obj\Debug\net5.0\ParkinglotApp.csprojAssemblyReference.cache
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\MySqlConnector.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\lucas.jose\Documents\udemy\ParkinglotApp\backend\obj\Debug\net5.0\ParkinglotApp.csproj.CopyComplete
