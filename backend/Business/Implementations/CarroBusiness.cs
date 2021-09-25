@@ -1,14 +1,15 @@
 ﻿using ParkinglotApp.Model;
-using ParkinglotApp.Repository;
+using ParkinglotApp.Repository.Generic;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ParkinglotApp.Business.Implementations
 {
   public class CarroBusiness : ICarroBusiness
   {
-    private readonly ICarroRepository _repository;
+    private readonly IGenericoRepository<Carro> _repository;
 
-    public CarroBusiness(ICarroRepository repository)
+    public CarroBusiness(IGenericoRepository<Carro> repository)
     {
       _repository = repository;
     }
@@ -20,7 +21,7 @@ namespace ParkinglotApp.Business.Implementations
 
     public Carro BuscarPorId(long codigo)
     {
-      return _repository.BuscarPorId(codigo);
+      return _repository.BuscarPorId(codigo, x => x.Manobras);
     }
 
     public Carro Criar(Carro carro)
@@ -35,7 +36,7 @@ namespace ParkinglotApp.Business.Implementations
 
     public List<Carro> Listar()
     {
-      return _repository.Listar();
+      return _repository.Listar(x => x.Manobras);
     }
   }
 }

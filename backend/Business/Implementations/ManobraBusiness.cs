@@ -1,15 +1,14 @@
 ﻿using ParkinglotApp.Model;
-using ParkinglotApp.Repository;
-using System;
+using ParkinglotApp.Repository.Generic;
 using System.Collections.Generic;
 
 namespace ParkinglotApp.Business.Implementations
 {
   public class ManobraBusiness : IManobraBusiness
   {
-    private readonly IManobraRepository _repository;
+    private readonly IGenericoRepository<Manobra> _repository;
 
-    public ManobraBusiness(IManobraRepository repository)
+    public ManobraBusiness(IGenericoRepository<Manobra> repository)
     {
       _repository = repository;
     }
@@ -21,7 +20,7 @@ namespace ParkinglotApp.Business.Implementations
 
     public Manobra BuscarPorId(long id)
     {
-      return _repository.BuscarPorId(id);
+      return _repository.BuscarPorId(id, x => x.Manobrista, x => x.Carro);
     }
 
     public Manobra Criar(Manobra manobra)
@@ -36,7 +35,7 @@ namespace ParkinglotApp.Business.Implementations
 
     public List<Manobra> Listar()
     {
-      return _repository.Listar();
+      return _repository.Listar(x => x.Manobrista, x => x.Carro);
     }
   }
 }

@@ -1,19 +1,18 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using ParkinglotApp.Model.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ParkinglotApp.Model
 {
-  public class Carro
+  [Table("carro")]
+  public class Carro : EntidadeBase
   {
-    [Key, Column("codigo")]
-    public long Codigo { get; set; }
     [Column("marca")]
     public string Marca { get; set; }
     [Column("modelo")]
     public string Modelo { get; set; }
     [Column("placa")]
     public string Placa { get; set; }
-    public List<Manobra> Manobras { get; set; }
+    public virtual IEnumerable<Manobra> Manobras { get; set; }
   }
 }

@@ -1,14 +1,14 @@
 ﻿using ParkinglotApp.Model;
-using ParkinglotApp.Repository;
+using ParkinglotApp.Repository.Generic;
 using System.Collections.Generic;
 
 namespace ParkinglotApp.Business.Implementations
 {
   public class ManobristaBusiness : IManobristaBusiness
   {
-    private readonly IManobristaRepository _repository;
+    private readonly IGenericoRepository<Manobrista> _repository;
 
-    public ManobristaBusiness(IManobristaRepository repository)
+    public ManobristaBusiness(IGenericoRepository<Manobrista> repository)
     {
       _repository = repository;
     }
@@ -20,7 +20,7 @@ namespace ParkinglotApp.Business.Implementations
 
     public Manobrista BuscarPorId(long codigo)
     {
-      return _repository.BuscarPorId(codigo);
+      return _repository.BuscarPorId(codigo, x => x.Manobras);
     }
 
     public Manobrista Criar(Manobrista manobrista)
@@ -35,7 +35,7 @@ namespace ParkinglotApp.Business.Implementations
 
     public List<Manobrista> Listar()
     {
-      return _repository.Listar();
+      return _repository.Listar(x => x.Manobras);
     }
   }
 }

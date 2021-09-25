@@ -7,8 +7,7 @@ using Microsoft.Extensions.Hosting;
 using ParkinglotApp.Business;
 using ParkinglotApp.Business.Implementations;
 using ParkinglotApp.Model.Context;
-using ParkinglotApp.Repository;
-using ParkinglotApp.Repository.Implementations;
+using ParkinglotApp.Repository.Generic;
 using Serilog;
 using System.Collections.Generic;
 
@@ -36,15 +35,21 @@ namespace ParkinglotApp
       services.AddControllers();
       var connection = Configuration["MySqlConnection:MySqlConnectionString"];
       services.AddDbContext<MySqlContext>(options => options.UseMySql(connection));
+
+      services.AddControllersWithViews()
+              .AddNewtonsoftJson(options =>
+              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+      );
+
       if (Environment.IsDevelopment())
       {
         MigrateDatabase(connection);
       }
       services.AddApiVersioning();
       services.AddScoped<IManobristaBusiness, ManobristaBusiness>();
-      services.AddScoped<IManobristaRepository, ManobristaRepository>();
       services.AddScoped<ICarroBusiness, CarroBusiness>();
-      services.AddScoped<ICarroRepository, CarroRepository>();
+      services.AddScoped<IManobraBusiness, ManobraBusiness>();
+      services.AddScoped(typeof(IGenericoRepository<>), typeof(GenericoRepository<>));
     }
 
     private void MigrateDatabase(string connection)

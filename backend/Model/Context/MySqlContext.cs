@@ -12,13 +12,15 @@ namespace ParkinglotApp.Model.Context
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-      modelBuilder.Entity<Manobra>()
-          .HasOne(p => p.Manobrista)
-          .WithMany(b => b.Manobras);
+      modelBuilder.Entity<Manobrista>()
+          .HasMany<Manobra>(g => g.Manobras)
+          .WithOne(s => s.Manobrista)
+          .HasForeignKey(s => s.CodigoManobrista);
 
-      modelBuilder.Entity<Manobra>()
-         .HasOne(p => p.Carro)
-         .WithMany(b => b.Manobras);
+      modelBuilder.Entity<Carro>()
+          .HasMany<Manobra>(g => g.Manobras)
+          .WithOne(s => s.Carro)
+          .HasForeignKey(s => s.CodigoCarro);
     }
   }
 }
