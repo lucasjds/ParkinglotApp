@@ -13,5 +13,7 @@ namespace ParkinglotApp.Repository.Generic
     List<T> Listar(params Expression<Func<T, object>>[] childrens);
     T Atualizar(T e);
     void Deletar(long cod);
+    List<T> BuscarPorPaginacao(string query);
+    int ObterContagem(string query);
   }
 }

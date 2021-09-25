@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Routing;
 using ParkinglotApp.Hypermedia.Abstract;
+using ParkinglotApp.Hypermedia.Utils;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace ParkinglotApp.Hypermedia
 
     public bool CanEnrich(Type contentType)
     {
-      return contentType == typeof(T) || contentType == typeof(List<T>);
+      return contentType == typeof(T) || contentType == typeof(List<T>) || contentType == typeof(PagedSearchVO<T>);
     }
 
     bool IResponseEnricher.CanEnrich(ResultExecutingContext response)
@@ -49,7 +50,14 @@ namespace ParkinglotApp.Hypermedia
             EnrichModel(element, urlHelper);
           });
         }
-        
+        else if (okObjectResult.Value is PagedSearchVO<T> pageSearch)
+        {
+          Parallel.ForEach(pageSearch.List.ToList(), (element) =>
+          {
+            EnrichModel(element, urlHelper);
+          });
+        }
+
       }
       await Task.FromResult<object>(null);
     }

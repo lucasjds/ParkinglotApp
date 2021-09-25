@@ -86,5 +86,25 @@ namespace ParkinglotApp.Repository.Generic
       return dataset.ToList();
     }
 
+    public List<T> BuscarPorPaginacao(string query)
+    {
+      return dataset.FromSqlRaw<T>(query).ToList();
+    }
+
+    public int ObterContagem(string query)
+    {
+      var result = string.Empty;
+      using (var conn = _context.Database.GetDbConnection())
+      {
+        conn.Open();
+        using (var command = conn.CreateCommand())
+        {
+          command.CommandText = query;
+          result = command.ExecuteScalar().ToString();
+        }
+      }
+      return int.Parse(result);
+    }
+
   }
 }
