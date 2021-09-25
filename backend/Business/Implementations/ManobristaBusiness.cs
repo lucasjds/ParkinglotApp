@@ -1,9 +1,6 @@
 ﻿using ParkinglotApp.Model;
-using ParkinglotApp.Model.Context;
-using ParkinglotApp.Services;
-using System;
+using ParkinglotApp.Repository;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ParkinglotApp.Business.Implementations
 {

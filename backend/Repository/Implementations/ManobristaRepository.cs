@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParkinglotApp.Services.Implementations
+namespace ParkinglotApp.Repository.Implementations
 {
   public class ManobristaRepository : IManobristaRepository
   {
@@ -22,7 +22,7 @@ namespace ParkinglotApp.Services.Implementations
 
     public Manobrista Atualizar(Manobrista manobrista)
     {
-      if (!Existe(manobrista.Codigo)) return new Manobrista();
+      if (!Existe(manobrista.Codigo)) return null;
       var result = _context.Manobristas.SingleOrDefault(x => x.Codigo.Equals(manobrista.Codigo));
       if (result != null)
       {

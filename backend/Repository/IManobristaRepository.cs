@@ -1,7 +1,7 @@
 ﻿using ParkinglotApp.Model;
 using System.Collections.Generic;
 
-namespace ParkinglotApp.Services
+namespace ParkinglotApp.Repository
 {
   public interface IManobristaRepository
   {
