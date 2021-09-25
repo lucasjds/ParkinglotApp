@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using ParkinglotApp.Business;
 using ParkinglotApp.Business.Implementations;
 using ParkinglotApp.Hypermedia.Enricher;
@@ -54,6 +56,20 @@ namespace ParkinglotApp
       services.AddSingleton(filterOptions);
 
       services.AddApiVersioning();
+      services.AddSwaggerGen(c => {
+        c.SwaggerDoc("v1",
+          new OpenApiInfo
+          {
+            Title = "Parkinglot Estapar Web API",
+            Version = "v1",
+            Description = "Parkinglot Estapar Web API",
+            Contact = new OpenApiContact
+            {
+              Name = "Lucas Souza",
+              Url = new System.Uri("https://github.com/lucasjds"),
+            }
+          });
+      });
       services.AddScoped<IManobristaBusiness, ManobristaBusiness>();
       services.AddScoped<ICarroBusiness, CarroBusiness>();
       services.AddScoped<IManobraBusiness, ManobraBusiness>();
@@ -92,6 +108,15 @@ namespace ParkinglotApp
       app.UseHttpsRedirection();
 
       app.UseRouting();
+
+      app.UseSwagger();
+      app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Parkinglot APP");
+      });
+
+      var option = new RewriteOptions();
+      option.AddRedirect("^$", "swagger");
+      app.UseRewriter(option);
 
       app.UseAuthorization();
 

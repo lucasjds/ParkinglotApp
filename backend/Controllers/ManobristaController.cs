@@ -4,6 +4,7 @@ using ParkinglotApp.Business;
 using ParkinglotApp.Data.VO;
 using ParkinglotApp.Hypermedia.Filter;
 using ParkinglotApp.Model;
+using System.Collections.Generic;
 
 namespace ParkinglotApp.Controllers
 {
@@ -23,6 +24,10 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpGet]
+    [ProducesResponseType(200, Type = typeof(List<ManobristaVO>))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Get()
     {
@@ -31,6 +36,10 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpGet("{id}")]
+    [ProducesResponseType(200, Type = typeof(ManobristaVO))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Get(long id)
     {
@@ -41,6 +50,9 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPost]
+    [ProducesResponseType((200), Type = typeof(ManobristaVO))]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Post([FromBody] ManobristaVO manobrista)
     {
@@ -50,6 +62,9 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPut]
+    [ProducesResponseType((200), Type = typeof(ManobristaVO))]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Put([FromBody] ManobristaVO manobrista)
     {
@@ -59,6 +74,9 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpDelete("{id}")]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
     [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Delete(long id)
     {
