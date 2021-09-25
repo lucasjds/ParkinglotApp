@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ParkinglotApp.Business;
+using ParkinglotApp.Data.VO;
 using ParkinglotApp.Model;
 
 namespace ParkinglotApp.Controllers
@@ -37,7 +38,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] Manobrista manobrista)
+    public IActionResult Post([FromBody] ManobristaVO manobrista)
     {
       if (manobrista == null)
         return BadRequest();
@@ -45,7 +46,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPut]
-    public IActionResult Put([FromBody] Manobrista manobrista)
+    public IActionResult Put([FromBody] ManobristaVO manobrista)
     {
       if (manobrista == null)
         return BadRequest();

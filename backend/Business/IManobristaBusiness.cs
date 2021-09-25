@@ -1,14 +1,15 @@
-﻿using ParkinglotApp.Model;
+﻿using ParkinglotApp.Data.VO;
+using ParkinglotApp.Model;
 using System.Collections.Generic;
 
 namespace ParkinglotApp.Business
 {
   public interface IManobristaBusiness
   {
-    Manobrista Criar(Manobrista manobrista);
-    Manobrista BuscarPorId(long id);
-    List<Manobrista> Listar();
-    Manobrista Atualizar(Manobrista manobrista);
+    ManobristaVO Criar(ManobristaVO manobrista);
+    ManobristaVO BuscarPorId(long id);
+    List<ManobristaVO> Listar();
+    ManobristaVO Atualizar(ManobristaVO manobrista);
     void Deletar(long id);
   }
 }

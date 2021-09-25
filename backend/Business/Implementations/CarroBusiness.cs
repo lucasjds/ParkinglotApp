@@ -1,32 +1,39 @@
-﻿using ParkinglotApp.Model;
+﻿using ParkinglotApp.Data.Converter.Implementations;
+using ParkinglotApp.Data.VO;
+using ParkinglotApp.Model;
 using ParkinglotApp.Repository.Generic;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ParkinglotApp.Business.Implementations
 {
   public class CarroBusiness : ICarroBusiness
   {
     private readonly IGenericoRepository<Carro> _repository;
+    private readonly CarroConverter _converter;
 
     public CarroBusiness(IGenericoRepository<Carro> repository)
     {
       _repository = repository;
+      _converter = new CarroConverter();
     }
 
-    public Carro Atualizar(Carro carro)
+    public CarroVO Atualizar(CarroVO carro)
     {
-      return _repository.Atualizar(carro);
+      var entity = _converter.Parse(carro);
+      entity = _repository.Atualizar(entity);
+      return _converter.Parse(entity);
     }
 
-    public Carro BuscarPorId(long codigo)
+    public CarroVO BuscarPorId(long codigo)
     {
-      return _repository.BuscarPorId(codigo, x => x.Manobras);
+      return _converter.Parse(_repository.BuscarPorId(codigo, x => x.Manobras));
     }
 
-    public Carro Criar(Carro carro)
+    public CarroVO Criar(CarroVO carro)
     {
-      return _repository.Criar(carro);
+      var entity = _converter.Parse(carro);
+      entity = _repository.Criar(entity);
+      return _converter.Parse(entity);
     }
 
     public void Deletar(long codigo)
@@ -34,9 +41,9 @@ namespace ParkinglotApp.Business.Implementations
       _repository.Deletar(codigo);
     }
 
-    public List<Carro> Listar()
+    public List<CarroVO> Listar()
     {
-      return _repository.Listar(x => x.Manobras);
+      return _converter.Parse(_repository.Listar(x => x.Manobras));
     }
   }
 }

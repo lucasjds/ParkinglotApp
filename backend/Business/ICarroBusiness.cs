@@ -1,17 +1,14 @@
-﻿using ParkinglotApp.Model;
-using System;
+﻿using ParkinglotApp.Data.VO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ParkinglotApp.Business
 {
   public interface ICarroBusiness
   {
-    Carro Criar(Carro carro);
-    Carro BuscarPorId(long id);
-    List<Carro> Listar();
-    Carro Atualizar(Carro carro);
+    CarroVO Criar(CarroVO carro);
+    CarroVO BuscarPorId(long id);
+    List<CarroVO> Listar();
+    CarroVO Atualizar(CarroVO carro);
     void Deletar(long id);
   }
 }

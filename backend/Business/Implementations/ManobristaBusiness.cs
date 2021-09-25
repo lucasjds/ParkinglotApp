@@ -1,4 +1,6 @@
-﻿using ParkinglotApp.Model;
+﻿using ParkinglotApp.Data.Converter.Implementations;
+using ParkinglotApp.Data.VO;
+using ParkinglotApp.Model;
 using ParkinglotApp.Repository.Generic;
 using System.Collections.Generic;
 
@@ -7,25 +9,31 @@ namespace ParkinglotApp.Business.Implementations
   public class ManobristaBusiness : IManobristaBusiness
   {
     private readonly IGenericoRepository<Manobrista> _repository;
+    private readonly ManobristaConverter _converter;
 
     public ManobristaBusiness(IGenericoRepository<Manobrista> repository)
     {
       _repository = repository;
+      _converter = new ManobristaConverter();
     }
 
-    public Manobrista Atualizar(Manobrista manobrista)
+    public ManobristaVO Atualizar(ManobristaVO manobrista)
     {
-      return _repository.Atualizar(manobrista);
+      var entity = _converter.Parse(manobrista);
+      entity = _repository.Atualizar(entity);
+      return _converter.Parse(entity);
     }
 
-    public Manobrista BuscarPorId(long codigo)
+    public ManobristaVO BuscarPorId(long codigo)
     {
-      return _repository.BuscarPorId(codigo, x => x.Manobras);
+      return _converter.Parse(_repository.BuscarPorId(codigo, x => x.Manobras));
     }
 
-    public Manobrista Criar(Manobrista manobrista)
+    public ManobristaVO Criar(ManobristaVO manobrista)
     {
-      return _repository.Criar(manobrista);
+      var entity = _converter.Parse(manobrista);
+      entity = _repository.Criar(entity);
+      return _converter.Parse(entity);
     }
 
     public void Deletar(long codigo)
@@ -33,9 +41,9 @@ namespace ParkinglotApp.Business.Implementations
       _repository.Deletar(codigo);
     }
 
-    public List<Manobrista> Listar()
+    public List<ManobristaVO> Listar()
     {
-      return _repository.Listar(x => x.Manobras);
+      return _converter.Parse(_repository.Listar(x => x.Manobras));
     }
   }
 }

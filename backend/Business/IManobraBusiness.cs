@@ -1,4 +1,5 @@
-﻿using ParkinglotApp.Model;
+﻿using ParkinglotApp.Data.VO;
+using ParkinglotApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,10 @@ namespace ParkinglotApp.Business
 {
   public interface IManobraBusiness
   {
-    Manobra Criar(Manobra manobra);
-    Manobra BuscarPorId(long id);
-    List<Manobra> Listar();
-    Manobra Atualizar(Manobra manobra);
+    ManobraVO Criar(ManobraVO manobra);
+    ManobraVO BuscarPorId(long id);
+    List<ManobraVO> Listar();
+    ManobraVO Atualizar(ManobraVO manobra);
     void Deletar(long id);
   }
 }
