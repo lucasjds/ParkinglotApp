@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ParkinglotApp.Business;
 using ParkinglotApp.Business.Implementations;
+using ParkinglotApp.Hypermedia.Enricher;
+using ParkinglotApp.Hypermedia.Filter;
 using ParkinglotApp.Model.Context;
 using ParkinglotApp.Repository.Generic;
 using Serilog;
@@ -45,11 +47,19 @@ namespace ParkinglotApp
       {
         MigrateDatabase(connection);
       }
+      var filterOptions = new HyperMediaFilterOptions();
+      filterOptions.ContentResponseEnricherList.Add(new CarroEnricher());
+      filterOptions.ContentResponseEnricherList.Add(new ManobraEnricher());
+      filterOptions.ContentResponseEnricherList.Add(new ManobristaEnricher());
+      services.AddSingleton(filterOptions);
+
       services.AddApiVersioning();
       services.AddScoped<IManobristaBusiness, ManobristaBusiness>();
       services.AddScoped<ICarroBusiness, CarroBusiness>();
       services.AddScoped<IManobraBusiness, ManobraBusiness>();
       services.AddScoped(typeof(IGenericoRepository<>), typeof(GenericoRepository<>));
+
+      
     }
 
     private void MigrateDatabase(string connection)
@@ -88,6 +98,7 @@ namespace ParkinglotApp
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
+        endpoints.MapControllerRoute("DefaultApi", "{controller=values}/{id?}");
       });
     }
   }

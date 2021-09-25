@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ParkinglotApp.Business;
 using ParkinglotApp.Data.VO;
+using ParkinglotApp.Hypermedia.Filter;
 using ParkinglotApp.Model;
 
 namespace ParkinglotApp.Controllers
@@ -22,6 +23,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpGet]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Get()
     {
 
@@ -29,6 +31,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpGet("{id}")]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Get(long id)
     {
       var person = _manobraBusiness.BuscarPorId(id);
@@ -38,6 +41,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPost]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Post([FromBody] ManobraVO manobra)
     {
       if (manobra == null)
@@ -46,6 +50,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPut]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Put([FromBody] ManobraVO manobra)
     {
       if (manobra == null)
@@ -54,6 +59,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpDelete("{id}")]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Delete(long id)
     {
       _manobraBusiness.Deletar(id);

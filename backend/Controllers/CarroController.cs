@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using ParkinglotApp.Business;
 using ParkinglotApp.Data.VO;
+using ParkinglotApp.Hypermedia.Filter;
 using ParkinglotApp.Model;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpGet]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Get()
     {
 
@@ -33,6 +35,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpGet("{id}")]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Get(long id)
     {
       var person = _carroBusiness.BuscarPorId(id);
@@ -42,6 +45,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPost]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Post([FromBody] CarroVO carro)
     {
       if (carro == null)
@@ -50,6 +54,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpPut]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Put([FromBody] CarroVO carro)
     {
       if (carro == null)
@@ -58,6 +63,7 @@ namespace ParkinglotApp.Controllers
     }
 
     [HttpDelete("{id}")]
+    [TypeFilter(typeof(HyperMediaFilter))]
     public IActionResult Delete(long id)
     {
       _carroBusiness.Deletar(id);

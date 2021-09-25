@@ -21,7 +21,7 @@ namespace ParkinglotApp.Data.Converter.Implementations
         Marca = origin.Marca,
         Modelo = origin.Modelo,
         Placa = origin.Placa,
-        Manobras = manobraConverter.Parse(origin.Manobras.ToList()),
+        Manobras =  manobraConverter.Parse(origin.Manobras?.ToList()),
       };
     }
 
@@ -41,7 +41,7 @@ namespace ParkinglotApp.Data.Converter.Implementations
         Marca = origin.Marca,
         Modelo = origin.Modelo,
         Placa = origin.Placa,
-        Manobras = manobraConverter.Parse(origin.Manobras.ToList()),
+        Manobras = manobraConverter.Parse(origin.Manobras?.ToList()),
       };
     }
 

@@ -12,14 +12,14 @@ namespace ParkinglotApp.Data.Converter.Implementations
     public Manobrista Parse(ManobristaVO origin)
     {
       if (origin == null) return null;
-
+      ManobraConverter manobraConverter = new ManobraConverter();
       return new Manobrista
       {
         Codigo = origin.Codigo,
         Cpf = origin.Cpf,
         DataNascimento = origin.DataNascimento,
         Nome = origin.Nome,
-        Manobras = (origin.Manobras),
+        Manobras = manobraConverter.Parse(origin.Manobras?.ToList()),
       };
     }
 
@@ -32,13 +32,14 @@ namespace ParkinglotApp.Data.Converter.Implementations
     public ManobristaVO Parse(Manobrista origin)
     {
       if (origin == null) return null;
+      ManobraConverter manobraConverter = new ManobraConverter();
       return new ManobristaVO
       {
         Codigo = origin.Codigo,
         Cpf = origin.Cpf,
         DataNascimento = origin.DataNascimento,
         Nome = origin.Nome,
-        Manobras = (origin.Manobras),
+        Manobras = manobraConverter.Parse(origin.Manobras?.ToList()),
       };
     }
 
