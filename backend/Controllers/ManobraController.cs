@@ -23,6 +23,17 @@ namespace ParkinglotApp.Controllers
       _manobraBusiness = manobraBusiness;
     }
 
+    [HttpGet("{sortDirection}/{pageSize}/{page}")]
+    [ProducesResponseType((200), Type = typeof(List<ManobraVO>))]
+    [ProducesResponseType(204)]
+    [ProducesResponseType(400)]
+    [ProducesResponseType(401)]
+    [TypeFilter(typeof(HyperMediaFilter))]
+    public IActionResult Get(string sortDirection, int pageSize, int page)
+    {
+      return Ok(_manobraBusiness.BuscarPorPaginacao(sortDirection, pageSize, page));
+    }
+
     [HttpGet]
     [ProducesResponseType(200, Type = typeof(List<ManobraVO>))]
     [ProducesResponseType(204)]

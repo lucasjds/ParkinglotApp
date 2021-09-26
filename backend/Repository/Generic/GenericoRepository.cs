@@ -86,8 +86,9 @@ namespace ParkinglotApp.Repository.Generic
       return dataset.ToList();
     }
 
-    public List<T> BuscarPorPaginacao(string query)
+    public List<T> BuscarPorPaginacao(string query, params Expression<Func<T, object>>[] childrens)
     {
+      childrens.ToList().ForEach(x => dataset.Include(x).Load());
       return dataset.FromSqlRaw<T>(query).ToList();
     }
 

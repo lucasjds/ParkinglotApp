@@ -1,4 +1,5 @@
 ﻿using ParkinglotApp.Data.VO;
+using ParkinglotApp.Hypermedia.Utils;
 using ParkinglotApp.Model;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace ParkinglotApp.Business
     List<ManobraVO> Listar();
     ManobraVO Atualizar(ManobraVO manobra);
     void Deletar(long id);
+    PagedSearchVO<ManobraVO> BuscarPorPaginacao(string sortDirection, int pageSize, int page);
   }
 }
