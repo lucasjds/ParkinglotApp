@@ -16,7 +16,7 @@ export default function FormCarro(){
     const history = useHistory();
 
     useEffect(() => {
-        if(codigoCarro === '0') return;
+        if(!codigoCarro) return;
         else carregarCarro();
     }, codigoCarro);
 
@@ -61,7 +61,7 @@ export default function FormCarro(){
             <div className="content">
                 <section className="form">
                     <h1>Adicionar novo carro</h1>
-                    <p>Preencha o formulário e clique em {codigoCarro === '0'? `'Adicionar'` : `'Atualizar'`}</p>
+                    <p>Preencha o formulário e clique em {!codigoCarro? `'Adicionar'` : `'Atualizar'`}</p>
                     <Link className="back-link" to="/carros">
                         <FiArrowLeft size={16} color="#251FC5"/>
                         Home
@@ -71,7 +71,7 @@ export default function FormCarro(){
                     <input placeholder="Marca" value={marca} onChange={e => setMarca(e.target.value)}/>
                     <input placeholder="Modelo" value={modelo} onChange={e => setModelo(e.target.value)}/>
                     <input placeholder="Placa" value={placa} onChange={e => setPlaca(e.target.value)}/>
-                    <button className="button" type="submit">{codigoCarro === '0'? 'Adicionar' : 'Atualizar'}</button>
+                    <button className="button" type="submit">{!codigoCarro? 'Adicionar' : 'Atualizar'}</button>
                 </form>
             </div>
         </div>

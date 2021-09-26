@@ -24,7 +24,7 @@ export default function Carros(){
     
     async function editarCarro(id) {
         try {
-            history.push(`carro/novo/${id}`)
+            history.push(`carro/editar/${id}`)
         } catch (err) {
             alert('Falha ao editar!');
         }
@@ -43,7 +43,9 @@ export default function Carros(){
     return (
         <div className="carro-container">
             <header>
-                <Link className="button" to="carro/novo/0">Adicionar Carro</Link>
+                <Link className="button" to="manobristas">Manobristas</Link>
+                <Link className="button" to="manobras">Manobras</Link>
+                <Link className="button" to="carro/novo">Adicionar Carro</Link>
             </header>
             <h1>Carros registrados</h1>
             <ul>
