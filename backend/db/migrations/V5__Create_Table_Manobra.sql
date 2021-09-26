@@ -4,6 +4,6 @@
 	`codigo_manobrista` BIGINT(20) NOT NULL,
 	`data_hora_manobra` DATETIME NULL DEFAULT NULL,
 	PRIMARY KEY (`codigo`) USING BTREE,
-	FOREIGN KEY (codigo_carro) REFERENCES carro(codigo),
-	FOREIGN KEY (codigo_manobrista) REFERENCES manobrista(codigo)
+	FOREIGN KEY (codigo_carro) REFERENCES carro(codigo) ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY (codigo_manobrista) REFERENCES manobrista(codigo) ON UPDATE CASCADE ON DELETE CASCADE
 ) ;

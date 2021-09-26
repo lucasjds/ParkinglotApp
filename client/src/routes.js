@@ -5,6 +5,7 @@ import Carros from './pages/Carros';
 import FormCarro from './pages/FormCarro';
 
 import Manobristas from './pages/Manobristas';
+import FormManobrista from './pages/FormManobrista';
 
 export default function Routes(){
     return (
@@ -16,6 +17,8 @@ export default function Routes(){
                 <Route path="/carro/novo" exact component={FormCarro}/>
 
                 <Route path="/manobristas" exact component={Manobristas}/>
+                <Route path="/manobrista/editar/:codigoManobrista" exact component={FormManobrista}/>
+                <Route path="/manobrista/novo" exact component={FormManobrista}/>
                
             </switch>
         </BrowserRouter>

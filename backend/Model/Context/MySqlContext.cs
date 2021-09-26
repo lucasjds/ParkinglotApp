@@ -15,12 +15,14 @@ namespace ParkinglotApp.Model.Context
       modelBuilder.Entity<Manobrista>()
           .HasMany<Manobra>(g => g.Manobras)
           .WithOne(s => s.Manobrista)
-          .HasForeignKey(s => s.CodigoManobrista);
+          .HasForeignKey(s => s.CodigoManobrista)
+          .OnDelete(DeleteBehavior.Cascade);
 
       modelBuilder.Entity<Carro>()
           .HasMany<Manobra>(g => g.Manobras)
           .WithOne(s => s.Carro)
-          .HasForeignKey(s => s.CodigoCarro);
+          .HasForeignKey(s => s.CodigoCarro)
+          .OnDelete(DeleteBehavior.Cascade); ;
     }
   }
 }

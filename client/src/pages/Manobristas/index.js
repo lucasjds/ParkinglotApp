@@ -24,7 +24,7 @@ export default function Manobristas(){
     
     async function editarManobrista(id) {
         try {
-            history.push(`manobrista/novo/${id}`)
+            history.push(`manobrista/editar/${id}`)
         } catch (err) {
             alert('Falha ao editar!');
         }
@@ -45,7 +45,7 @@ export default function Manobristas(){
             <header>
                 <Link className="button" to="carros">Carros</Link>
                 <Link className="button" to="manobras">Manobras</Link>
-                <Link className="button" to="manobrista/novo/0">Adicionar Carro</Link>
+                <Link className="button" to="manobrista/novo">Adicionar Manobrista</Link>
             </header>
             <h1>Manobristas registrados</h1>
             <ul>
@@ -54,7 +54,7 @@ export default function Manobristas(){
                         <strong>Nome:</strong>
                         <p>{manobrista.nome}</p>
                         <strong>Data nascimento:</strong>
-                        <p>{manobrista.data_nascimento}</p>
+                        <p>{Intl.DateTimeFormat('pt-BR').format(new Date(manobrista.dataNascimento))}</p>
                         <strong>CPF:</strong>
                         <p>{manobrista.cpf}</p>
                         

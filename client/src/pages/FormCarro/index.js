@@ -43,7 +43,7 @@ export default function FormCarro(){
             placa,
         };
         try{
-            if(codigoCarro === '0') {
+            if(!codigoCarro) {
                 await api.post('api/carro/v1' , data);
             } else {
                 data.codigo = codigo;
@@ -60,7 +60,7 @@ export default function FormCarro(){
         <div className="new-carro-container">
             <div className="content">
                 <section className="form">
-                    <h1>Adicionar novo carro</h1>
+                    <h1>Formulario carro</h1>
                     <p>Preencha o formulário e clique em {!codigoCarro? `'Adicionar'` : `'Atualizar'`}</p>
                     <Link className="back-link" to="/carros">
                         <FiArrowLeft size={16} color="#251FC5"/>
